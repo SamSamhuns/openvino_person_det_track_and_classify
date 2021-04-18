@@ -14,6 +14,10 @@ https://docs.openvinotoolkit.org/2021.3/omz_models_group_intel.html
 
 https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/public
 
+## OpenVINO training extensions
+
+https://github.com/openvinotoolkit/training_extensions
+
 ## Download Intel OpenVINO IR (Intermediate Representation) models directly
 
 https://download.01.org/opencv/2021/openvinotoolkit/2021.1/open_model_zoo/models_bin/

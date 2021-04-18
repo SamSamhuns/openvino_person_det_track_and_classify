@@ -210,13 +210,13 @@ def inference(args):
                         if ref is None:
                             ref_vector_list[i] = person_vector
                             calc_distance = False
-                            person_id = i+1
+                            person_id = i + 1
                             break
                     if calc_distance:
                         dist = [(ref @ person_vector.T) / (np.linalg.norm(ref) * np.linalg.norm(person_vector))
                                 for ref in ref_vector_list]
                         person_id = dist.index(min(dist)) + 1
-                        ref_vector_list[person_id-1] = person_vector
+                        ref_vector_list[person_id - 1] = person_vector
 
                     cv2.putText(frame, f"ID: {person_id}", (xmin, ymin - 18),
                                 cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 1)
@@ -251,17 +251,17 @@ if __name__ == '__main__':
     # Parse Arguments
     parser = argparse.ArgumentParser(
         description='Basic OpenVINO Example for Person Detection and Re-identification. Re-ID is only avai for videos')
-    parser.add_argument('--preid-model-xml',
-                        default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.xml",
-                        help='XML File')
-    parser.add_argument('--preid-model-bin',
-                        default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.bin",
-                        help='BIN File')
     parser.add_argument('--pdet-model-xml',
                         default='models/person-detection-0201/person-detection-0201.xml',
                         help='XML File')
     parser.add_argument('--pdet-model-bin',
                         default='models/person-detection-0201/person-detection-0201.bin',
+                        help='BIN File')
+    parser.add_argument('--preid-model-xml',
+                        default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.xml",
+                        help='XML File')
+    parser.add_argument('--preid-model-bin',
+                        default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.bin",
                         help='BIN File')
     parser.add_argument('-t',
                         '--target-device',

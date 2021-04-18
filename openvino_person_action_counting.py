@@ -55,7 +55,7 @@ def get_matching_pixel_percent(patch, min_pixel, max_pixel, color_space):
 
 def inference(args) -> None:
     """
-    Run Person Re-identification Application
+    Run Person Detection and Re-identification/Tracking
     """
     # hyper-parameters
     MAX_DETECTIONS = 3
@@ -166,7 +166,8 @@ def inference(args) -> None:
         pdN, pdC, pdH, pdW = PDetOpenVinoNetwork.input_info[PDetInputLayer].input_data.shape
         prN, prC, prH, prW = PReidOpenVinoNetwork.input_info[PReidInputLayer].input_data.shape
         fh, fw = frame.shape[0], frame.shape[1]
-        print('Original Frame Shape: ', fw, fh)
+        if args.debug:
+            print('Original Frame Shape: ', fw, fh)
 
         # reference vector for reidentification
         ref_vector0 = None
@@ -319,21 +320,21 @@ if __name__ == '__main__':
     # Parse Arguments
     parser = argparse.ArgumentParser(
         description='Basic OpenVINO Example for Person Detection and Re-identification. Re-ID is only avai for videos')
-    parser.add_argument('--preid-model-xml',
-                        # default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.xml",  # best model 16 fps after obj det
-                        default="models/person-reidentification-retail-0286-fp32/person-reidentification-retail-0286.xml",  # balanced
-                        # default="models/person-reidentification-retail-0288-fp32/person-reidentification-retail-0288.xml",  # fastest and acceptable
-                        help='XML File')
-    parser.add_argument('--preid-model-bin',
-                        # default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.bin",  # best model 16 fps after obj det
-                        default="models/person-reidentification-retail-0286-fp32/person-reidentification-retail-0286.bin",  # balanced
-                        # default="models/person-reidentification-retail-0288-fp32/person-reidentification-retail-0288.bin",  # fastest and acceptable
-                        help='BIN File')
     parser.add_argument('--pdet-model-xml',
                         default='models/person-detection-0201/person-detection-0201.xml',
                         help='XML File')
     parser.add_argument('--pdet-model-bin',
                         default='models/person-detection-0201/person-detection-0201.bin',
+                        help='BIN File')
+    parser.add_argument('--preid-model-xml',
+                        # default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.xml",  # best 16 fps after obj det
+                        default="models/person-reidentification-retail-0286-fp32/person-reidentification-retail-0286.xml",  # balanced
+                        # default="models/person-reidentification-retail-0288-fp32/person-reidentification-retail-0288.xml",  # fastest & acceptable
+                        help='XML File')
+    parser.add_argument('--preid-model-bin',
+                        # default="models/person-reidentification-retail-0277-fp32/person-reidentification-retail-0277.bin",  # best 16 fps after obj det
+                        default="models/person-reidentification-retail-0286-fp32/person-reidentification-retail-0286.bin",  # balanced
+                        # default="models/person-reidentification-retail-0288-fp32/person-reidentification-retail-0288.bin",  # fastest & acceptable
                         help='BIN File')
     parser.add_argument('-t',
                         '--target-device',
