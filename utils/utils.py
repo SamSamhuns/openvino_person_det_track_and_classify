@@ -1,4 +1,5 @@
 import os
+import cv2
 import argparse
 
 # Import OpenVINO Inference Engine
@@ -95,3 +96,26 @@ def get_distinct_rgb_color(index):
         index %= len(color_list)
 
     return color_list[index]
+
+
+def get_matching_pixel_percent(patch, min_pixel, max_pixel, color_space):
+    color_space_converted = cv2.cvtColor(patch, color_space)
+    color_mask = cv2.inRange(color_space_converted, min_pixel, max_pixel)
+    # kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
+    # color_mask = cv2.erode(color_mask, kernel, iterations=1)
+    # color_mask = cv2.dilate(color_mask, kernel, iterations=1)
+    det_patch = cv2.bitwise_and(patch, patch, mask=color_mask)
+    det_pixels = cv2.countNonZero(
+        cv2.cvtColor(det_patch, cv2.COLOR_BGR2GRAY))
+    total_pixels = patch.shape[0] * patch.shape[1]
+    det_percent = det_pixels / total_pixels
+
+    return det_percent
+
+
+def count_num_digits(num):
+    c = 0
+    while num:
+        num //= 10
+        c += 1
+    return c

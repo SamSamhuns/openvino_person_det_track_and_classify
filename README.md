@@ -1,27 +1,72 @@
-# OpenVINO Inference
+# OpenVINO
 
 Set up a conda/venv virtual env and install dependencies from  `requirements.txt`
 
-## OpenVINO PyPi Package
+## OpenVINO install and inference
 
-https://pypi.org/project/openvino/
+### OpenVINO PyPi Package
 
-## OpenVINO Models
+Install with pip using: `pip install openvino` from <https://pypi.org/project/openvino/>
 
-https://docs.openvinotoolkit.org/2021.3/omz_models_group_intel.html
+### OpenVINO Python Inference Samples
 
-## OpenVINO GitHub Public Model Repo
+<https://github.com/odundar/openvino_python_samples>
 
-https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/public
+## Running sample python scripts
 
-## OpenVINO training extensions
+### 1. Person/Object Detection
 
-https://github.com/openvinotoolkit/training_extensions
+```bash
+# image mode
+$ python openvino_person_detection.py -m image -i PATH_TO_IMG -o OUTPUT_DIR
+# video mode
+$ python openvino_person_detection.py -m video -i PATH_TO_VID -o OUTPUT_DIR
+# webcam mode
+$ python openvino_person_detection.py -m webcam -o OUTPUT_DIR
+```
 
-## Download Intel OpenVINO IR (Intermediate Representation) models directly
+### 2. Person Re-identification
 
-https://download.01.org/opencv/2021/openvinotoolkit/2021.1/open_model_zoo/models_bin/
+```bash
+# video mode
+$ python openvino_person_reidentification.py -m video -i PATH_TO_VID -o OUTPUT_DIR
+```
 
-## Set up Deep Learning Workbench from DockerHub to download & convert to IR models for OpenVINO Inference
+### 3. Person Action Counting (Punch/Kick/Normal)
 
-https://docs.openvinotoolkit.org/latest/workbench_docs_Workbench_DG_Install_from_Docker_Hub.html
+```bash
+# video mode
+$ python openvino_person_action_counting.py -m video -i PATH_TO_VID -o OUTPUT_DIR
+```
+
+## Pretrained OpenVINO models
+
+1.  **OpenVINO Model Documentation and Download**
+
+<https://docs.openvinotoolkit.org/2021.3/omz_models_group_intel.html>
+
+2.  **OpenVINO GitHub Public Model Repo**
+
+<https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/public>
+
+3.  **Download Intel OpenVINO IR (Intermediate Representation) models directly**
+
+<https://download.01.org/opencv/2021/openvinotoolkit/2021.1/open_model_zoo/models_bin/>
+
+## Creating OpenVINO models from other NN frameworks
+
+1.  **Convert to OpenVINO format with Docker**
+
+Local repository available in `./google_teachable_machine_to_openvino`
+
+<https://github.com/ojjsaw/teachable-machine-openvino.git>
+
+2.  **OpenVINO training extensions**
+
+<https://github.com/openvinotoolkit/training_extensions>
+
+3.  **Deep Learning Workbench from DockerHub**
+
+Download & Convert to IR models for OpenVINO Inference
+
+<https://docs.openvinotoolkit.org/latest/workbench_docs_Workbench_DG_Install_from_Docker_Hub.html>
