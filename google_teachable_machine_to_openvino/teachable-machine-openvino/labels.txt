@@ -1,0 +1,3 @@
+0 kick
+1 punch
+2 normal
