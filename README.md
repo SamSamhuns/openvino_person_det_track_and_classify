@@ -49,9 +49,9 @@ $ python openvino_person_action_counting.py -m video -i PATH_TO_VID -o OUTPUT_DI
 
 <https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/public>
 
-3.  **Download Intel OpenVINO IR (Intermediate Representation) models directly**
+3.  **Download Intel OpenVINO IR (Intermediate Representation) models**
 
-<https://download.01.org/opencv/2021/openvinotoolkit/2021.1/open_model_zoo/models_bin/>
+<https://github.com/openvinotoolkit/open_model_zoo/blob/master/tools/model_tools/README.md>
 
 ## Creating OpenVINO models from other NN frameworks
 
